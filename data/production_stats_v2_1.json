@@ -1,0 +1,440 @@
+{
+  "generated_at": "2026-10-05T23:51:57-05:00",
+  "source": {
+    "queries": "paper/production_stats_v2_1_queries.sql",
+    "raw_output": "paper/production_stats_v2_1_out.txt",
+    "database": "PostgreSQL de producción (solo lectura, transacción con ROLLBACK)",
+    "cutoff": "Sessions.StartedAt < 2026-09-26T00:00:00-05:00",
+    "course_codes": [
+      "070165",
+      "070185"
+    ],
+    "evaluable_definition": "QuestionType in {SingleChoice, MultipleChoice, TrueFalse} AND HasCorrectAnswer AND IsCorrect IS NOT NULL",
+    "rt_definition": "Responses.SubmittedAt - SessionQuestionRuns.OpenedAt (reloj del servidor)"
+  },
+  "main": {
+    "block_a_matches_expected": true,
+    "course_offerings": 4,
+    "offerings": [
+      {
+        "code": "070165",
+        "term": "2026-1",
+        "name": "BIG DATA",
+        "sessions": 8,
+        "students": 32,
+        "questions": 37,
+        "responses": 784,
+        "first": "2026-04-06",
+        "last": "2026-06-01"
+      },
+      {
+        "code": "070185",
+        "term": "2026-1",
+        "name": "REDES II",
+        "sessions": 7,
+        "students": 24,
+        "questions": 39,
+        "responses": 597,
+        "first": "2026-04-07",
+        "last": "2026-05-28"
+      },
+      {
+        "code": "070165",
+        "term": "2026-2",
+        "name": "BIG DATA",
+        "sessions": 3,
+        "students": 34,
+        "questions": 14,
+        "responses": 279,
+        "first": "2026-09-11",
+        "last": "2026-09-25"
+      },
+      {
+        "code": "070185",
+        "term": "2026-2",
+        "name": "REDES II",
+        "sessions": 3,
+        "students": 36,
+        "questions": 27,
+        "responses": 727,
+        "first": "2026-09-02",
+        "last": "2026-09-25"
+      }
+    ],
+    "students_registered": 132,
+    "students_approved": 131,
+    "students_answering": 125,
+    "students_note": "Registrados/aprobados = perfiles creados antes del corte (coincide con los ligados a 070165/070185 creados antes del corte). La tabla completa tiene hoy 199 / 187 por las altas del piloto.",
+    "sessions": 21,
+    "sessions_unclosed": 0,
+    "questions_answered": 117,
+    "runs_launched": 122,
+    "runs_opened": 120,
+    "responses_total": 2387,
+    "responses_evaluable": 2088,
+    "questions_with_concept": 114,
+    "questions_with_concept_missing_topic_or_lo": 0,
+    "distinct_concepts": 40,
+    "responses_covered_by_concept": 2328,
+    "responses_covered_by_concept_pct": 97.5,
+    "by_format": {
+      "SC": {
+        "n": 1027,
+        "accuracy": 0.787,
+        "median_rt_s": 22.7,
+        "iqr_s": [
+          16,
+          31.8
+        ]
+      },
+      "TF": {
+        "n": 587,
+        "accuracy": 0.736,
+        "median_rt_s": 15.4,
+        "iqr_s": [
+          11.2,
+          22.6
+        ]
+      },
+      "MC": {
+        "n": 474,
+        "accuracy": 0.492,
+        "median_rt_s": 28.6,
+        "iqr_s": [
+          20.7,
+          39.3
+        ]
+      }
+    },
+    "wordcloud_responses": 299,
+    "rt_max_s": 127.4,
+    "rt_missing": 0,
+    "rt_over_300s": 0,
+    "concept_groups": {
+      "total": 51,
+      "multi_format": 17,
+      "multi_format_two": 13,
+      "multi_format_three": 4,
+      "single_format": 31,
+      "wordcloud_only": 3,
+      "multi_format_evaluable_responses": 1194,
+      "single_format_evaluable_responses": 835
+    },
+    "case_l2loops": {
+      "concept": "Redundancia y bucles de capa 2",
+      "course": "070185",
+      "term": "2026-1",
+      "total": {
+        "accuracy": 0.858,
+        "median_rt_s": 17.8,
+        "students": 24,
+        "evaluable": 120,
+        "responses": 139
+      },
+      "SC": {
+        "accuracy": 0.988,
+        "median_rt_s": 18.5,
+        "n": 86
+      },
+      "TF": {
+        "accuracy": 0.722,
+        "median_rt_s": 13,
+        "n": 18
+      },
+      "MC": {
+        "accuracy": 0.313,
+        "median_rt_s": 38.6,
+        "n": 16
+      }
+    },
+    "session_duration_min": {
+      "n": 21,
+      "median": 4.7,
+      "p25": 3.6,
+      "p75": 7.5,
+      "min": 2.8,
+      "max": 70.2,
+      "definition": "Tramo activo: primera pregunta abierta (min SessionQuestionRuns.OpenedAt) -> última respuesta recibida (max Responses.SubmittedAt). Las 21 sesiones tienen respuestas en un único día.",
+      "why_not_spec_definition": "El spec pedía EndedAt - StartedAt, pero EndedAt se escribe cuando el docente pulsa Cerrar. 5 de 21 sesiones se cerraron horas o días después de la clase (469.4, 3531.3, 4116.7, 4313.4 y 9911.5 min), así que esa resta mide la demora en cerrar y no el uso en el aula.",
+      "spec_definition_ended_minus_started": {
+        "n": 21,
+        "median": 43.8,
+        "p25": 7.9,
+        "p75": 106.4,
+        "min": 3.4,
+        "max": 9911.5
+      },
+      "first_open_to_last_question_close": {
+        "n": 21,
+        "median": 5.1,
+        "p25": 3.7,
+        "p75": 7.6,
+        "min": 2.8,
+        "max": 70.2
+      },
+      "raw_output": "paper/production_stats_v2_1_duracion_out.txt"
+    },
+    "runs_per_session_median": 5,
+    "runs_per_session_min": 3,
+    "runs_per_session_max": 11,
+    "after_cutoff_not_in_paper": {
+      "sessions": 3,
+      "responses": 647,
+      "responses_evaluable": 585
+    }
+  },
+  "pilot": {
+    "note": "Opcional; no entra al paper. questions_launched = preguntas agregadas a una sesión (runs); questions_opened = las que realmente se abrieron.",
+    "030591": {
+      "name": "CENTRALES DE ENERGIAS RENOVABLES",
+      "term": "2026-2",
+      "sessions": 1,
+      "session_dates": [
+        "2026-09-29"
+      ],
+      "students_answering": 19,
+      "responses_total": 75,
+      "responses_evaluable": 37,
+      "questions_launched": 6,
+      "questions_opened": 4,
+      "distinct_concepts": 3,
+      "concepts_with_multiple_lo": 0,
+      "launched": 6,
+      "fully_tagged": 6,
+      "edited_after_first_open": 0
+    },
+    "070247": {
+      "name": "ENTORNOS PARA DESARROLLO DE APLICACIONES",
+      "term": "2026-2",
+      "sessions": 2,
+      "session_dates": [
+        "2026-09-29"
+      ],
+      "students_answering": 27,
+      "responses_total": 222,
+      "responses_evaluable": 186,
+      "questions_launched": 24,
+      "questions_opened": 11,
+      "distinct_concepts": 7,
+      "concepts_with_multiple_lo": 0,
+      "launched": 24,
+      "fully_tagged": 24,
+      "edited_after_first_open": 0
+    },
+    "aggregate_by_format": {
+      "TF": {
+        "n": 103,
+        "accuracy": 0.864,
+        "median_rt_s": 27.6
+      },
+      "SC": {
+        "n": 70,
+        "accuracy": 0.943,
+        "median_rt_s": 31.6
+      },
+      "MC": {
+        "n": 50,
+        "accuracy": 0.7,
+        "median_rt_s": 33.8
+      }
+    }
+  },
+  "access_control": {
+    "version_tag": "v2.2.1",
+    "image": {
+      "api": {
+        "name": "leibnihtz/leibtimeter-api:latest",
+        "digest": "sha256:951725142c4ff93147b3339a00126e7af8cc43fbbdb9a95bbb0e4b25f6d8da09",
+        "image_id": "528fa61dcb36",
+        "container_created": "2026-09-29T16:29:05-05:00"
+      },
+      "frontend": {
+        "name": "leibnihtz/leibtimeter-frontend:latest",
+        "digest": "sha256:6b1af508c58921f3981163c004826e3a8e83a97e1d90230126c1fb1e8a7a7713",
+        "image_id": "c8efc954dd99",
+        "container_created": "2026-09-29T17:03:58-05:00"
+      },
+      "verified_on": "2026-10-06",
+      "source": "paper/docker_versions.txt (docker ps + docker images --digests en el droplet)",
+      "note": "El droplet solo tiene la etiqueta :latest; no se comparó el digest con :v2.2 / :v2.2.1 en Docker Hub. Las horas de creación de los contenedores son coherentes con el deploy de v2.2 (API) y v2.2.1 (frontend) del 2026-09-29."
+    },
+    "commit": "cdddfb54fec4f40018db8c7b06009b1b6715c359",
+    "commit_note": "cdddfb5 = fix de acceso por docente (v2.2). El control por curso y los grupos SignalR vienen de a38c100 (v2.1-privacy-and-fr9).",
+    "versions": [
+      {
+        "tag": "v2.1-privacy-and-fr9",
+        "commit": "a38c100ddf533d38e58062a4be3b354983d0bd2a",
+        "tagged_at": "2026-09-27T19:48:23-05:00"
+      },
+      {
+        "tag": "v2.2",
+        "commit": "8170f71810ff4b1d665e14abb7cccd540a3a1b56",
+        "tagged_at": "2026-09-29T16:21:36-05:00"
+      },
+      {
+        "tag": "v2.2.1",
+        "commit": "85dadbb93815265956da879e80a8634ac74df2e1",
+        "tagged_at": "2026-09-29T16:48:07-05:00"
+      }
+    ],
+    "data_collection_versions": {
+      "main_dataset": "v2.0 (todas las sesiones son anteriores al 2026-09-27)",
+      "pilot_sessions": "v2.1. Las sesiones piloto empezaron el 2026-09-29 a las 11:00 y 13:41 (Lima); el contenedor actual de la API (v2.2, con el fix de acceso por docente cdddfb5) se creó ese día a las 16:29 y el del frontend a las 17:03. La imagen anterior de la API en el droplet (sha256:7c2a27c9..., id 6cb25756b4bd) es del 2026-09-27, fecha del deploy de v2.1."
+    },
+    "scoped_endpoints": [
+      {
+        "endpoint": "GET /api/reports/sessions/{id}",
+        "check": "DenyIfNoSessionAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/reports/sessions/{id}/export",
+        "check": "DenyIfNoSessionAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/reports/courses/{id}",
+        "check": "DenyIfNoAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/reports/courses/{id}/export",
+        "check": "DenyIfNoAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/reports/courses/{id}/ranking",
+        "check": "DenyIfNoAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/reports/courses/{id}/ranking/export",
+        "check": "DenyIfNoAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/reports/students/{id}",
+        "check": "DenyIfNoStudentAccessAsync + VisibleCourseIdsOfStudentAsync",
+        "test": "StudentAccessTests.Teacher_student_history_is_limited_to_own_students_and_own_courses"
+      },
+      {
+        "endpoint": "GET /api/students/{id}",
+        "check": "DenyIfNoStudentAccessAsync",
+        "test": "StudentAccessTests.Teacher_sees_detail_only_of_students_in_own_courses"
+      },
+      {
+        "endpoint": "GET /api/students (sin code)",
+        "check": "Solo Admin; docente recibe 400",
+        "test": "StudentAccessTests.Teacher_cannot_list_all_students"
+      },
+      {
+        "endpoint": "POST/PUT/DELETE /api/students",
+        "check": "Solo Admin",
+        "test": "StudentAccessTests.Creating_editing_and_deleting_students_is_admin_only"
+      },
+      {
+        "endpoint": "GET /api/sessions",
+        "check": "DenyIfNoAccessAsync o filtro por cursos del docente",
+        "test": "CourseScopedAccessTests.Session_list_without_courseId_returns_only_teachers_courses"
+      },
+      {
+        "endpoint": "GET /api/sessions/{id} (Admin/Teacher)",
+        "check": "DenyIfNoSessionAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "POST /api/sessions, /{id}/start, /{id}/close, GET /{id}/qr, /{id}/qr/image",
+        "check": "DenyIfNoAccessAsync / DenyIfNoSessionAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "POST /api/sessions/{id}/question-runs (+ /open, /close)",
+        "check": "DenyIfNoSessionAccessAsync + DenyIfNoQuestionAccessAsync",
+        "test": "QuestionBankAccessTests.Teacher_cannot_add_question_from_other_course_to_own_session"
+      },
+      {
+        "endpoint": "GET /api/sessions/{id}/question-runs/{runId}/text-responses",
+        "check": "DenyIfNoSessionAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/courses/{id}/students",
+        "check": "DenyIfNoAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "POST /api/courses/{id}/enrollments, DELETE /enrollments/{studentId}, POST /enrollments/csv",
+        "check": "DenyIfNoAccessAsync",
+        "test": "CourseScopedAccessTests"
+      },
+      {
+        "endpoint": "GET /api/question-banks",
+        "check": "VisibleBanksAsync",
+        "test": "QuestionBankAccessTests"
+      },
+      {
+        "endpoint": "GET/PUT/DELETE /api/question-banks/{id}, POST /api/question-banks",
+        "check": "DenyIfNoBankAccessAsync / DenyIfNoAccessAsync",
+        "test": "QuestionBankAccessTests.Teacher_gets_403_on_every_bank_action_of_other_course"
+      },
+      {
+        "endpoint": "GET /api/questions",
+        "check": "VisibleQuestionsAsync",
+        "test": "QuestionBankAccessTests.Teacher_question_list_contains_only_visible_questions"
+      },
+      {
+        "endpoint": "GET/PUT/DELETE /api/questions/{id}, opciones, POST /api/questions",
+        "check": "DenyIfNoQuestionAccessAsync / DenyIfNoBankAccessAsync",
+        "test": "QuestionBankAccessTests.Teacher_gets_403_on_every_question_action_of_other_course"
+      },
+      {
+        "endpoint": "GET /api/questions/metadata-suggestions",
+        "check": "CanViewCourseAsync o solo preguntas propias",
+        "test": "LearningMetadataApiTests"
+      },
+      {
+        "endpoint": "GET /api/courses/{courseId}/learning-analytics/concepts (+ /detail)",
+        "check": "CanViewCourseAsync",
+        "test": "LearningMetadataApiTests"
+      },
+      {
+        "endpoint": "SignalR SessionHub.JoinSession (Admin/Teacher → grupo docente)",
+        "check": "CanViewCourseAsync",
+        "test": "SessionHubGroupTests.Unassigned_teacher_cannot_join_teacher_group"
+      },
+      {
+        "endpoint": "SignalR ResponseReceived / ScoresUpdated / ParticipantJoined",
+        "check": "Solo al grupo docente",
+        "test": "SessionHubGroupTests.Private_events_go_to_teacher_group_only, Student_group_never_receives_student_ids_or_texts"
+      }
+    ],
+    "scoped_endpoints_note": "El mapeo endpoint → test es por clase y nombre de test; no se auditó línea a línea que cada verbo de cada fila tenga su aserción.",
+    "unscoped_endpoints": [
+      {
+        "endpoint": "GET /api/students?code=XXXX (Teacher)",
+        "identified_student_data": true,
+        "detail": "Devuelve id, código y nombre de cualquier alumno activo con ese código exacto, sin correo y sin filtro por curso. Intencional: se usa para matricular.",
+        "test": "StudentAccessTests.Teacher_finds_active_student_by_exact_code_without_email"
+      },
+      {
+        "endpoint": "GET /api/sessions/{id} (Student)",
+        "identified_student_data": false,
+        "detail": "No verifica matrícula. Devuelve preguntas y opciones sin la clave ni datos de otros alumnos."
+      },
+      {
+        "endpoint": "SignalR SessionHub.JoinSession (Student → grupo alumnos)",
+        "identified_student_data": false,
+        "detail": "No verifica matrícula. El grupo solo recibe QuestionOpened, QuestionClosed y SessionClosed."
+      },
+      {
+        "endpoint": "GET /api/courses/{id}",
+        "identified_student_data": false,
+        "detail": "Cualquier usuario autenticado ve nombre y correo de los docentes del curso."
+      }
+    ],
+    "tests_total": 105,
+    "tests_passing": 105,
+    "tests_run_at": "2026-10-05",
+    "tests_run_on": "working tree en main (HEAD 85dadbb = v2.2.1)"
+  }
+}
